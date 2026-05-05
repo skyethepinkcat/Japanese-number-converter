@@ -220,7 +220,7 @@ fn less_than_10k(number: usize) -> JapaneseNumber {
             // Prevent "ichi sen"
             if thousand > 1 {
                 result_romaji += UNITS_ROMAJI[thousand];
-                result_romaji += " ";
+                // result_romaji += " ";
 
                 result_kanji += UNITS_KANJI[thousand];
 
