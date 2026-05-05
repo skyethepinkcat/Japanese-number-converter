@@ -5,17 +5,17 @@
 //! - `kanji` : the number in kanji format
 //! - `katakana` : the number in katakana format
 //! - `romaji` : the number in roman format
-//! 
+//!
 //! ## Example
-//! 
+//!
 //! ```
 //! let result = japanese_number_converter::
 //!             JapaneseNumber::convert(100);
 //! println!("Result : {}  =>  {}  =>  {}  =>  {}",
 //!     result.arabiasuji(),result.kanji(),result.katakana(),result.romaji());
-//!     // Result : 100  =>  百  =>  ヒャク   =>  hyaku  
+//!     // Result : 100  =>  百  =>  ヒャク   =>  hyaku
 //! ```
-//! 
+//!
 pub struct JapaneseNumber {
     arabiasuji: usize,
     kanji: String,
@@ -25,21 +25,21 @@ pub struct JapaneseNumber {
 
 impl JapaneseNumber {
     ///  # Example
-    /// 
+    ///
     /// ```
     /// let result = japanese_number_converter::
     ///             JapaneseNumber::convert(100);
     /// println!("Result : {}  =>  {}  =>  {}  =>  {}",
     ///     result.arabiasuji(),result.kanji(),result.katakana(),result.romaji());
-    ///     // Result : 100  =>  百  =>  ヒャク   =>  hyaku  
+    ///     // Result : 100  =>  百  =>  ヒャク   =>  hyaku
     /// ```
-    /// 
+    ///
     /// # Panics
-    /// 
+    ///
     /// The lib support conversion of numbers from 0 upt to 1844_6744_0737_0955_1615.
-    /// It basically convert a number which can be contained in a `usize` variable. 
+    /// It basically convert a number which can be contained in a `usize` variable.
     /// When the value cannot be contained in a `usize` variable, it will raise an error.
-    /// ## Example : 
+    /// ## Example :
     /// ```
     ///     let result = japanese_number_converter::
     ///         JapaneseNumber::convert(1844_6744_0737_0955_1616);
@@ -49,7 +49,7 @@ impl JapaneseNumber {
     ///     // note: the literal `1844_6744_0737_0955_1616` does not fit into the type `usize`
     ///     //      whose range is `0..=18446744073709551615`
     /// ```
-    /// 
+    ///
     pub fn convert(number: usize) -> JapaneseNumber {
         over_10k(number)
     }
@@ -275,7 +275,7 @@ fn over_10k(number: usize) -> JapaneseNumber {
         let result = less_than_10k(num % 10000);
         if sep > 0 {
             if num % 10000 > 0 {
-                result_romaji.push(result.romaji + " " + PACKS_ROMAJI[sep - 1]);
+                result_romaji.push(result.romaji + PACKS_ROMAJI[sep - 1]);
                 result_katakana.push(result.katakana + PACKS_KATAKANA[sep - 1]);
                 result_kanji.push(result.kanji + PACKS_KANJI[sep - 1]);
             }
